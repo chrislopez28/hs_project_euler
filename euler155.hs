@@ -3,4 +3,4 @@
 
 capacitorSequence :: Int -> Int 
 capacitorSequence n | n == 1 = 1
-                    | n > 1 = (capacitorSequence(n-1) * 2) + 1
+                    | n > 1 = (capacitorSequence(n-1) * 2)
