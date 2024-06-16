@@ -1,7 +1,20 @@
 module Helpers where
 
-factors :: Int -> [Int]
+factors :: Integral a => a -> [a]
 factors n = [x | x <- [1..n], n `mod` x == 0] 
 
-isPrime :: Int -> Bool
+findLargestPrime :: Integral t => t -> t
+findLargestPrime n = findLargestPrime' n istart 
+    where 
+    findLargestPrime' n i = if n `mod` i == 0 && isPrime i then i else findLargestPrime' n (i-1)
+    istart = round (sqrt (fromIntegral n))
+
+isPrime :: Integral a => a -> Bool
 isPrime n = factors n == [1,n]
+
+primes :: Integral a => a -> [a]
+primes n = [x | x <- [2..n], isPrime x]
+
+primeFactors :: Integral a => a -> [a]
+primeFactors n = [p | p <- primes upperBound, n `mod` p == 0]
+    where upperBound = round (sqrt (fromIntegral n))
