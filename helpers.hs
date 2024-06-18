@@ -17,4 +17,10 @@ primes n = [x | x <- [2..n], isPrime x]
 
 primeFactors :: Integral a => a -> [a]
 primeFactors n = [p | p <- primes upperBound, n `mod` p == 0]
-    where upperBound = round (sqrt (fromIntegral n))
+    where upperBound = n `div` 2
+
+primeDecomposition :: Integral a => a -> [a]
+primeDecomposition n = primeDecomposition' n (primeFactors n) []
+    where
+    primeDecomposition' n [] ps = []
+    primeDecomposition' n (f:fs) ps = if n `mod` f == 0 then f : primeDecomposition' (n `div` f) (f:fs) (f:ps) else primeDecomposition' n fs ps
