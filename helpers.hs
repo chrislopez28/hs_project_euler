@@ -16,7 +16,7 @@ primes :: Integral a => a -> [a]
 primes n = [x | x <- [2..n], isPrime x]
 
 primeFactors :: Integral a => a -> [a]
-primeFactors n = [p | p <- primes upperBound, n `mod` p == 0]
+primeFactors n = [p | p <- primes n, n `mod` p == 0]
     where upperBound = n `div` 2
 
 primeDecomposition :: Integral a => a -> [a]
